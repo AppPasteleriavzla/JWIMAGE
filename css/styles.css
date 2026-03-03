@@ -1,0 +1,1078 @@
+/* ============================================
+   PHOTOSHARE - iOS STYLE APP
+   ============================================ */
+
+/* Reset y Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    user-select: none;
+}
+
+:root {
+    /* Colores iOS */
+    --ios-blue: #007AFF;
+    --ios-green: #34C759;
+    --ios-red: #FF3B30;
+    --ios-orange: #FF9500;
+    --ios-purple: #AF52DE;
+    --ios-pink: #FF2D55;
+    --ios-yellow: #FFCC00;
+    --ios-teal: #5AC8FA;
+    --ios-indigo: #5856D6;
+    
+    /* Backgrounds */
+    --bg-primary: #000000;
+    --bg-secondary: #1C1C1E;
+    --bg-tertiary: #2C2C2E;
+    --bg-elevated: #3A3A3C;
+    
+    /* Textos */
+    --text-primary: #FFFFFF;
+    --text-secondary: rgba(255, 255, 255, 0.6);
+    --text-tertiary: rgba(255, 255, 255, 0.3);
+    
+    /* Glassmorphism */
+    --glass-bg: rgba(30, 30, 30, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-blur: 20px;
+    
+    /* Sombras */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+    
+    /* Espaciado */
+    --safe-top: env(safe-area-inset-top, 44px);
+    --safe-bottom: env(safe-area-inset-bottom, 34px);
+    --safe-left: env(safe-area-inset-left, 0px);
+    --safe-right: env(safe-area-inset-right, 0px);
+}
+
+html {
+    font-size: 16px;
+    height: 100%;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    height: 100%;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   APP CONTAINER
+   ============================================ */
+#app {
+    height: 100vh;
+    height: 100dvh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ============================================
+   SCREENS
+   ============================================ */
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    background: var(--bg-primary);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    opacity: 0;
+    transform: translateX(20px);
+}
+
+.screen.active {
+    display: flex;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ============================================
+   BACKGROUND ANIMADO
+   ============================================ */
+.ios-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.gradient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.5;
+    animation: float 20s ease-in-out infinite;
+}
+
+.orb-1 {
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+    top: -100px;
+    right: -100px;
+    animation-delay: 0s;
+}
+
+.orb-2 {
+    width: 350px;
+    height: 350px;
+    background: linear-gradient(135deg, #4ECDC4, #44A08D);
+    bottom: 10%;
+    left: -100px;
+    animation-delay: -7s;
+}
+
+.orb-3 {
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    top: 40%;
+    right: -50px;
+    animation-delay: -14s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(30px, -30px) scale(1.1); }
+    50% { transform: translate(-20px, 20px) scale(0.9); }
+    75% { transform: translate(20px, 30px) scale(1.05); }
+}
+
+/* ============================================
+   PANTALLA DE SELECCIÓN DE ROL
+   ============================================ */
+#role-selection {
+    justify-content: center;
+    align-items: center;
+    padding: 40px 24px;
+}
+
+#role-selection .content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 400px;
+}
+
+.logo-container {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.app-icon {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 24px;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.app-title {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.7) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.app-subtitle {
+    font-size: 17px;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+/* Botones de Rol */
+.role-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.ios-button {
+    display: flex;
+    align-items: center;
+    padding: 18px 20px;
+    border-radius: 16px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    width: 100%;
+    background: var(--bg-secondary);
+}
+
+.ios-button:active {
+    transform: scale(0.98);
+}
+
+.ios-button.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+}
+
+.ios-button.primary {
+    background: linear-gradient(135deg, rgba(0, 122, 255, 0.9), rgba(88, 86, 214, 0.9));
+}
+
+.ios-button.secondary {
+    background: linear-gradient(135deg, rgba(52, 199, 89, 0.9), rgba(48, 209, 88, 0.9));
+}
+
+.button-icon {
+    font-size: 28px;
+    margin-right: 16px;
+    flex-shrink: 0;
+}
+
+.button-text {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.button-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.button-desc {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.chevron {
+    width: 20px;
+    height: 20px;
+    opacity: 0.5;
+    flex-shrink: 0;
+}
+
+/* ============================================
+   HEADER iOS
+   ============================================ */
+.ios-header {
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--safe-top) 16px 12px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    z-index: 100;
+}
+
+.back-button {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    color: var(--ios-blue);
+    font-size: 17px;
+    cursor: pointer;
+    padding: 8px 0;
+    min-width: 60px;
+}
+
+.back-button svg {
+    width: 24px;
+    height: 24px;
+}
+
+.header-title {
+    font-size: 17px;
+    font-weight: 600;
+    text-align: center;
+    flex: 1;
+    margin: 0 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.header-actions {
+    display: flex;
+    gap: 8px;
+    min-width: 60px;
+    justify-content: flex-end;
+}
+
+.icon-button {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--bg-tertiary);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.icon-button svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--text-primary);
+}
+
+.icon-button:active {
+    transform: scale(0.92);
+    background: var(--bg-elevated);
+}
+
+.icon-button.danger {
+    background: rgba(255, 59, 48, 0.2);
+}
+
+.icon-button.danger svg {
+    stroke: var(--ios-red);
+}
+
+/* ============================================
+   SCREEN CONTENT
+   ============================================ */
+.screen-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    padding-bottom: calc(16px + var(--safe-bottom));
+    -webkit-overflow-scrolling: touch;
+}
+
+.screen-content::-webkit-scrollbar {
+    display: none;
+}
+
+/* ============================================
+   GRID DE CARPETAS
+   ============================================ */
+.folders-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.folder-card {
+    background: var(--bg-secondary);
+    border-radius: 20px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.folder-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ios-blue), var(--ios-purple));
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.folder-card:hover::before,
+.folder-card:active::before {
+    opacity: 1;
+}
+
+.folder-card:active {
+    transform: scale(0.96);
+    background: var(--bg-tertiary);
+}
+
+.folder-icon {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, var(--ios-blue), var(--ios-indigo));
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin-bottom: 16px;
+}
+
+.folder-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 4px;
+}
+
+.folder-count {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+/* Admin folder card */
+.folders-grid.admin .folder-card {
+    position: relative;
+}
+
+.folder-delete-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255, 59, 48, 0.9);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.folder-delete-btn svg {
+    width: 14px;
+    height: 14px;
+    stroke: white;
+}
+
+.folder-card:hover .folder-delete-btn,
+.folder-card:active .folder-delete-btn {
+    opacity: 1;
+}
+
+/* ============================================
+   GRID DE IMÁGENES
+   ============================================ */
+.images-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+}
+
+.image-item {
+    aspect-ratio: 1;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-secondary);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.image-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.image-item:hover img {
+    transform: scale(1.05);
+}
+
+.image-item.admin::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 24px;
+    height: 24px;
+    background: rgba(255, 59, 48, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.image-item.admin:hover::after {
+    opacity: 1;
+}
+
+/* ============================================
+   UPLOAD AREA
+   ============================================ */
+.upload-section {
+    padding: 16px;
+    padding-top: 8px;
+}
+
+.upload-area {
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 32px 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.upload-area:hover,
+.upload-area.dragover {
+    border-color: var(--ios-blue);
+    background: rgba(0, 122, 255, 0.05);
+}
+
+.upload-area input {
+    display: none;
+}
+
+.upload-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+
+.upload-text {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.upload-hint {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.upload-content {
+    padding-top: 0;
+}
+
+/* ============================================
+   EMPTY STATE
+   ============================================ */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 24px;
+    text-align: center;
+}
+
+.empty-state.hidden {
+    display: none;
+}
+
+.empty-icon {
+    font-size: 64px;
+    margin-bottom: 16px;
+    opacity: 0.8;
+}
+
+.empty-state h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.empty-state p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    max-width: 280px;
+}
+
+/* ============================================
+   MODALS
+   ============================================ */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 24px;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+
+.modal-overlay.dark {
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 360px;
+    animation: modalSlideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes modalSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.glass-panel.compact {
+    max-width: 320px;
+}
+
+.modal-header {
+    padding: 24px 24px 16px;
+    text-align: center;
+}
+
+.modal-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.modal-header p {
+    font-size: 15px;
+    color: var(--text-secondary);
+}
+
+.modal-body {
+    padding: 0 24px 24px;
+}
+
+.modal-actions {
+    display: flex;
+    border-top: 1px solid var(--glass-border);
+}
+
+.modal-actions .ios-button {
+    flex: 1;
+    justify-content: center;
+    border-radius: 0;
+    padding: 16px;
+    background: transparent;
+}
+
+.modal-actions .ios-button:first-child {
+    border-right: 1px solid var(--glass-border);
+}
+
+.modal-actions .ios-button.primary {
+    color: var(--ios-blue);
+    font-weight: 600;
+}
+
+.modal-actions .ios-button.text {
+    color: var(--text-secondary);
+}
+
+/* ============================================
+   PIN MODAL
+   ============================================ */
+#pin-modal .modal-content {
+    max-width: 340px;
+}
+
+.pin-display {
+    padding: 0 24px 24px;
+}
+
+.pin-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.pin-dots .dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.15s ease;
+}
+
+.pin-dots .dot.filled {
+    background: var(--text-primary);
+    border-color: var(--text-primary);
+}
+
+.pin-dots .dot.error {
+    border-color: var(--ios-red);
+    animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(8px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+}
+
+.pin-error {
+    text-align: center;
+    color: var(--ios-red);
+    font-size: 14px;
+    margin-bottom: 16px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.pin-error.show {
+    opacity: 1;
+}
+
+.pin-keyboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--glass-border);
+    border-top: 1px solid var(--glass-border);
+}
+
+.pin-keyboard .key {
+    background: transparent;
+    border: none;
+    padding: 20px;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pin-keyboard .key:active {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.pin-keyboard .key.delete svg {
+    width: 24px;
+    height: 24px;
+}
+
+.pin-keyboard .key.empty {
+    pointer-events: none;
+}
+
+/* ============================================
+   INPUTS
+   ============================================ */
+.ios-input {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 17px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: var(--text-primary);
+    outline: none;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.ios-input::placeholder {
+    color: var(--text-secondary);
+}
+
+.ios-input:focus {
+    border-color: var(--ios-blue);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* ============================================
+   PREVIEW MODAL
+   ============================================ */
+.preview-modal .preview-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.preview-close,
+.preview-download {
+    position: absolute;
+    top: var(--safe-top);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(60, 60, 60, 0.8);
+    backdrop-filter: blur(10px);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.2s ease;
+}
+
+.preview-close {
+    left: 16px;
+}
+
+.preview-download {
+    right: 16px;
+}
+
+.preview-close svg,
+.preview-download svg {
+    width: 24px;
+    height: 24px;
+    stroke: white;
+}
+
+.preview-close:active,
+.preview-download:active {
+    transform: scale(0.92);
+    background: rgba(80, 80, 80, 0.9);
+}
+
+#preview-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    animation: imageScale 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes imageScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ============================================
+   TOAST NOTIFICATIONS
+   ============================================ */
+#toast-container {
+    position: fixed;
+    bottom: calc(24px + var(--safe-bottom));
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    pointer-events: none;
+}
+
+.toast {
+    background: rgba(50, 50, 50, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 12px 20px;
+    border-radius: 100px;
+    font-size: 15px;
+    color: white;
+    animation: toastSlideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
+}
+
+.toast.hiding {
+    animation: toastSlideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes toastSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes toastSlideDown {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+/* ============================================
+   LOADING OVERLAY
+   ============================================ */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+    transition: opacity 0.3s ease;
+}
+
+.loading-overlay.hidden {
+    display: none;
+    opacity: 0;
+}
+
+.loading-spinner {
+    width: 48px;
+    height: 48px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top-color: var(--ios-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+#loading-text {
+    margin-top: 16px;
+    font-size: 15px;
+    color: var(--text-secondary);
+}
+
+/* ============================================
+   UTILIDADES
+   ============================================ */
+.hidden {
+    display: none !important;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (min-width: 768px) {
+    .folders-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .images-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .folders-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .images-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+/* ============================================
+   ANIMACIONES ADICIONALES
+   ============================================ */
+.pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Scrollbar personalizada para desktop */
+@media (hover: hover) {
+    .screen-content::-webkit-scrollbar {
+        display: block;
+        width: 6px;
+    }
+    
+    .screen-content::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    .screen-content::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 3px;
+    }
+    
+    .screen-content::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.3);
+    }
+}
